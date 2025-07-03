@@ -1,94 +1,55 @@
-Analyse de données de tracking en football
+# Analyse de données de tracking en football
 
-Objectif :
-Ce projet vise à exploiter des données de tracking haute fréquence pour réaliser une analyse individuelle approfondie des performances d’un joueur sur un match donné. L’enjeu est d’extraire des indicateurs quantifiables et visuellement interprétables à partir de positions spatio-temporelles, en intégrant à la fois des métriques physiques, de présence territoriale, et d’implication dans le jeu.
+## Objectif  
+Exploiter des données de tracking haute fréquence pour analyser en profondeur la performance individuelle d’un joueur sur un match donné, en extrayant des indicateurs quantifiables et visuellement interprétables à partir de positions spatio-temporelles.
 
-Données :
+## 📂 Données  
+- **Fichier de tracking brut** : coordonnées (x, y) des joueurs et du ballon à chaque instant  
+- **Échantillonnage temporel** : suffisant pour calculer vitesses et accélérations  
+- **Structure** : colonne temps + paire de colonnes x/y par entité  
 
-- Fichier de tracking brut : coordonnées (x, y) des joueurs et du ballon à chaque instant
+## Prétraitement  
+1. Extraction et réorganisation des coordonnées par entité  
+2. Normalisation spatiale sur terrain standard FIFA (105 × 68 m)  
 
-- Échantillonnage temporel suffisant pour calculer vitesses et accélérations
+## Méthodologie  
+Calcul des métriques suivantes pour chaque joueur, à partir des dérivées premières (vitesse) et secondes (accélération) des positions :  
+- **Distance totale parcourue**  
+- **Vitesse moyenne & maximale**  
+- **Nombre et distance des sprints** (> 7 m/s)  
+- **Distance à haute intensité** (> 5,5 m/s)  
+- **Accélération maximale**  
+- **Position moyenne**  
+- **Surface couverte** (via `ConvexHull`)  
+- **Implication** (proximité au ballon par frame)  
+- **Efficience** (implication / distance)  
 
-- Données structurées avec une colonne temps et une paire de colonnes x/y par entité
+## Visualisations  
+- **Heatmaps 2D** (histogramme) & **heatmaps lissées** (KDE)  
+- **Contours de densité** pour comparer zones d’activité  
+- **Tableau synthétique** récapitulatif des métriques  
 
-Prétraitement :
+## Outils  
+- **Python** (Colab)  
+- **pandas**, **numpy**, **scipy**, **matplotlib**  
+- **ConvexHull** (surface couverte)  
+- **gaussian_kde** (densité spatiale)  
+- **mplsoccer** (représentation du terrain)  
 
-- Extraction et réorganisation des coordonnées par entité
+## Exemple de résultats (Player17)  
+- Distance parcourue : 10,3 km  
+- Vitesse max : 31,2 km/h  
+- Sprints détectés : 235  
+- Accélération max : 7,16 m/s²  
+- Position moyenne : couloir gauche  
+- Zone d’influence : rôle relayeur / milieu latéral pressing  
+- Implication : contacts fréquents avec le ballon  
+- Bon ratio efficience / volume de course  
 
-- Normalisation spatiale sur terrain standard FIFA (105x68m)
+**Profil-type** : milieu “box-to-box” à haute intensité, essentiel en transitions et pressing à la perte.
 
-Méthodologie :
-
-Métriques calculées pour chaque joueur :
-
-- Distance totale parcourue
-
-- Vitesse moyenne / maximale
-
-- Nombre et distance des sprints (> 7 m/s)
-
-- Distance à haute intensité (> 5.5 m/s)
-
-- Accélération maximale
-
-- Position moyenne
-
-- Surface couverte (via ConvexHull)
-
-- Implication (proximité au ballon par frame)
-
-- Efficience (implication / distance)
-
-Toutes les métriques sont calculées à partir des dérivées premières (vitesse) et secondes (accélération) des positions.
-
-Visualisations :
-
-- Heatmaps 2D classiques (histogramme) et heatmaps lissées (KDE)
-
-- Contours de densité pour comparer les zones d’activité entre joueurs
-
-- Résumés chiffrés sous forme de tableau synthétique
-
-Outils :
-
-- Python (Colab)
-
-- pandas, numpy, scipy, matplotlib
-
-- ConvexHull (surface couverte)
-
-- gaussian_kde (densité spatiale)
-
-- mplsoccer pour la représentation du terrain
-
-Exemple de résultats :
-
-Sur un joueur donné (Player17) :
-
-10.3 km parcourus
-
-Vitesse max : 31.2 km/h
-
-235 sprints détectés
-
-Accélération max : 7.16 m/s²
-
-Position moyenne dans le couloir gauche
-
-Zone d’influence cohérente avec un rôle de relayeur ou milieu latéral pressing
-
-Implication élevée (contacts fréquents avec le ballon)
-
-Bon ratio efficience/volume de course
-
-Ce profil est typique d’un milieu “box-to-box” à haute intensité, utile dans les phases de transition et le pressing à la perte.
-
-Cas d’usage :
-
-- Analyse post-match ou post-séquence
-
-- Suivi longitudinal des efforts et de l’implication
-
-- Comparaison intra/inter-joueurs sur critères objectifs
-
-- Outil de profiling de performance complémentaire aux stats événementielles
+## Cas d’usage  
+- Analyse post-match ou post-séquence  
+- Suivi longitudinal des efforts et de l’implication  
+- Comparaison intra/inter-joueurs sur critères objectifs  
+- Outil de profiling de performance complémentaire aux stats événementielles  
