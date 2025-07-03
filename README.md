@@ -52,4 +52,7 @@ Calcul des métriques suivantes pour chaque joueur, à partir des dérivées pre
 - Analyse post-match ou post-séquence  
 - Suivi longitudinal des efforts et de l’implication  
 - Comparaison intra/inter-joueurs sur critères objectifs  
-- Outil de profiling de performance complémentaire aux stats événementielles  
+- Outil de profiling de performance complémentaire aux stats événementielles
+
+![Carte des tirs]([https://raw.githubusercontent.com/tonrepo/football-datascience/main/images/shot_map.png](https://mail.google.com/mail/u/0?ui=2&ik=b9c7ebe638&attid=0.1&permmsgid=msg-a:r-1316748580671123508&th=197bcf72f19e1a0e&view=fimg&fur=ip&permmsgid=msg-a:r-1316748580671123508&sz=s0-l75-ft&attbid=ANGjdJ9329dym-207TJFiTh1sudlDOISpaHlmpwyF6XSvvuEsEdYV1ogHkmWen2NqZ9wIxAOTffe-Qd7JF5Ccq0-sxG43PQUZp9Epc6TvkgP44Tq-WSgRckhWy7x25A&disp=emb&realattid=ii_mci0c1ky0&zw))
+
